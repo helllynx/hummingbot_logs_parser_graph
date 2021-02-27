@@ -25,13 +25,12 @@ import pandas as pd
 #  TODO for now this WAY to split data in log record is OK, but in future need to write regex maybe
 def parse_one_line(line: str):
     spl_line = line.split(' ')
-    time = spl_line[23:25][1][:-7]
-    date = spl_line[23:25][0][7:]
+    time = spl_line[23:25][0][7:] + ' ' + spl_line[23:25][1][:-1]
     operation = spl_line[11]
     value_base = float(spl_line[14][1:])
     base, quote = spl_line[9][1:-1].split('-')
     value_quote = float(spl_line[17])
-    return [time, date, operation, value_base, base, quote, value_quote]
+    return [time, operation, value_base, base, quote, value_quote]
     # return HumBotLog(
     #     time=time,
     #     date=date,
@@ -50,7 +49,7 @@ def filter_log(data: list, filter_type: str):
 
 
 def convert_log_to_csv(parsed_log: list):
-    return pd.DataFrame(parsed_log, columns=['time', 'date', 'operation', 'base', 'value_base', 'quote', 'value_quote'])
+    return pd.DataFrame(parsed_log, columns=['time', 'operation', 'base', 'value_base', 'quote', 'value_quote'], )
 
 
 def log_parser(path_to_log_file: str):
@@ -63,5 +62,3 @@ def log_parser(path_to_log_file: str):
     print(parsed_data)
     return convert_log_to_csv(parsed_data)
 
-
-log_parser("/home/helllynx/SSH/GERM/root/hummingbot-docker/hummingbot_files/hummingbot_logs/logs_conf_pure_mm_1.log")
