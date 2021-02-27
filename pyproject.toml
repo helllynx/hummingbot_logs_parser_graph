@@ -10,6 +10,7 @@ pandas = "^1.2.2"
 jupyter = "^1.0.0"
 python-binance = "^0.7.9"
 plotly = "^4.14.3"
+ipykernel = "^5.5.0"
 
 [tool.poetry.dev-dependencies]
 

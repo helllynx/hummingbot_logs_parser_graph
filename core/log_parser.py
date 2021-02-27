@@ -58,7 +58,5 @@ def log_parser(path_to_log_file: str):
 
     data = filter_log(data.split('\n'), 'pure_market_making')
     parsed_data = [parse_one_line(line) for line in data]
-
-    print(parsed_data)
     return convert_log_to_csv(parsed_data)
 
