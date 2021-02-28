@@ -30,7 +30,7 @@ def parse_one_line(line: str):
     value_base = float(spl_line[14][1:])
     base, quote = spl_line[9][1:-1].split('-')
     value_quote = float(spl_line[17])
-    return [time, operation, value_base, base, quote, value_quote]
+    return [time, operation, base, value_base, quote, value_quote]
     # return HumBotLog(
     #     time=time,
     #     date=date,
@@ -59,4 +59,3 @@ def log_parser(path_to_log_file: str):
     data = filter_log(data.split('\n'), 'pure_market_making')
     parsed_data = [parse_one_line(line) for line in data]
     return convert_log_to_csv(parsed_data)
-
